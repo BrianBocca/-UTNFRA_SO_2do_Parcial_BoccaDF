@@ -1,0 +1,37 @@
+---
+- name: Ejecutar tareas en localhost
+  hosts: localhost
+  tasks:
+    - name: Copiar datos_alumno.txt
+      template:
+        src: templates/datos_alumno.j2
+        dest: /tmp/2do_parcial/alumno/datos_alumno.txt
+---
+- name: Ejecutar tareas en localhost
+  hosts: localhost
+  tasks:
+    - name: Copiar datos_alumno.txt
+      template:
+        src: templates/datos_alumno.j2
+        dest: /tmp/2do_parcial/alumno/datos_alumno.txt
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Copiar datos_equipo.txt
+      template:
+        src: templates/datos_equipo.j2
+        dest: /tmp/2do_parcial/equipo/datos_equipo.txt
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Configurar sudoers para grupo 2PSupervisores
+      lineinfile:
+        path: /etc/sudoers
+        line: '%2PSupervisores ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+        state: present
+        insertafter: EOF
+        backup: yes
+

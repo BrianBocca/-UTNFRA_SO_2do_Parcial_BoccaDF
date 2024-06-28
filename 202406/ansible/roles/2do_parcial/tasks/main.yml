@@ -1,0 +1,21 @@
+---
+# tasks file for 2do_parcial
+
+- debug:
+    msg: "Tareas del 2do Parcial"
+
+
+# roles/2do_parcial/tasks/main.yml
+
+- name: Crear directorio /tmp/2do_parcial/alumno
+  ansible.builtin.file:
+    path: /tmp/2do_parcial/alumno
+    state: directory
+    mode: '0755'
+
+- name: Crear directorio /tmp/2do_parcial/equipo
+  ansible.builtin.file:
+    path: /tmp/2do_parcial/equipo
+    state: directory
+    mode: '0755'
+      
